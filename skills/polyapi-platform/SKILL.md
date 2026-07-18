@@ -13,7 +13,7 @@ license: MIT
 
 ## What is only present with the full install
 
-If the user cloned the repo or installed the docs pack via `npx github:YOUR_GITHUB_USER/polyapi-docs-skill`, they will also have:
+If the user cloned the repo or installed the docs pack via `npx github:chrislatimer/polyapi-docs-skill`, they will also have:
 
 - **`knowledge/pages/*.md`** — the full docs.polyapi.io export (~70 pages) as local Markdown, with per-page `Source:` URLs
 - **`knowledge/SECTION_INDEX.md`** — section map
@@ -46,7 +46,7 @@ Do not use this skill when the task is unrelated to PolyAPI.
 
 1. **Is this an AI Function question, a first-time-setup question, a Tabi schema question, a server-function-runtime question, or a wrapper-pattern question?** → open the matching `references/ops__*.md` page. These win over anything else for behavior-in-practice.
 2. **Otherwise, is `knowledge/SECTION_INDEX.md` available?** → yes, use it to locate the relevant scraped page. Prefer page-level reads over the combined export.
-3. **If `knowledge/` isn't installed** → fetch from [docs.polyapi.io](https://docs.polyapi.io) directly, or ask the user to install the full docs pack via `npx github:YOUR_GITHUB_USER/polyapi-docs-skill`.
+3. **If `knowledge/` isn't installed** → fetch from [docs.polyapi.io](https://docs.polyapi.io) directly, or ask the user to install the full docs pack via `npx github:chrislatimer/polyapi-docs-skill`.
 4. **Synthesize** across pages when the workflow spans several features. When a scraped page and an `ops__*.md` page disagree, `ops__*.md` wins — those were written by probing the live API and reading the SDK source.
 
 ## Section map (full install only — under `knowledge/pages/`)
