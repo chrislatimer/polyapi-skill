@@ -4,14 +4,14 @@ const fs = require('fs');
 const path = require('path');
 
 function usage() {
-  console.log(`polyapi-docs-skill installer
+  console.log(`polyapi-skill installer
 
 Usage:
-  polyapi-docs-skill [--target <project-dir>] [--force]
+  polyapi-skill [--target <project-dir>] [--force]
 
 What it installs into the target project:
-  .claude/polyapi-docs-skill/knowledge/*       (full docs pack — ~70 scraped pages + section index)
-  .claude/polyapi-docs-skill/AGENTS.md
+  .claude/polyapi-skill/knowledge/*       (full docs pack — ~70 scraped pages + section index)
+  .claude/polyapi-skill/AGENTS.md
   .claude/skills/polyapi-platform/SKILL.md     (skill entrypoint, with YAML frontmatter)
   .claude/skills/polyapi-platform/references/  (the 5 field-notes pages that always travel with the skill)
 
@@ -73,7 +73,7 @@ function main() {
     throw new Error(`Target directory does not exist: ${targetRoot}`);
   }
 
-  const vendorRoot = path.join(targetRoot, '.claude', 'polyapi-docs-skill');
+  const vendorRoot = path.join(targetRoot, '.claude', 'polyapi-skill');
   const skillDir = path.join(targetRoot, '.claude', 'skills', 'polyapi-platform');
 
   const sourceKnowledge = path.join(repoRoot, 'knowledge');

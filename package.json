@@ -1,13 +1,13 @@
 {
-  "name": "polyapi-docs-skill",
+  "name": "polyapi-skill",
   "version": "1.1.0",
   "description": "Vendorable PolyAPI docs + Claude Code skill. Ships the full PolyAPI documentation as local Markdown plus field-notes pages for AI Functions, Python setup, Tabi gotchas, server-function runtime, and reducer wrapper patterns.",
   "license": "MIT",
   "author": "Chris Latimer <chris.latimer@vectorize.io>",
-  "homepage": "https://github.com/chrislatimer/polyapi-docs-skill",
+  "homepage": "https://github.com/chrislatimer/polyapi-skill",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chrislatimer/polyapi-docs-skill.git"
+    "url": "git+https://github.com/chrislatimer/polyapi-skill.git"
   },
   "keywords": [
     "polyapi",
@@ -21,7 +21,7 @@
     "canopy"
   ],
   "bin": {
-    "polyapi-docs-skill": "scripts/install.js"
+    "polyapi-skill": "scripts/install.js"
   },
   "engines": {
     "node": ">=18"

@@ -1,4 +1,4 @@
-# Maintaining polyapi-docs-skill
+# Maintaining polyapi-skill
 
 Notes for whoever is updating this repo. Not needed if you're just installing the skill.
 
@@ -9,7 +9,7 @@ Notes for whoever is updating this repo. Not needed if you're just installing th
 ├── .claude-plugin/plugin.json        # Claude Code plugin manifest (auto-discovery)
 ├── package.json                      # npm metadata + bin for `npx github:` installer
 ├── scripts/
-│   ├── install.js                    # runs on `npx github:chrislatimer/polyapi-docs-skill`
+│   ├── install.js                    # runs on `npx github:chrislatimer/polyapi-skill`
 │   ├── scrape_polyapi_docs.py        # rebuilds knowledge/pages/*.md from docs.polyapi.io
 │   └── build_section_index.py        # rebuilds knowledge/SECTION_INDEX.md
 ├── knowledge/
@@ -86,7 +86,7 @@ TMP=$(mktemp -d) && \
   find "$TMP/.claude" -maxdepth 4
 ```
 
-Expect both `.claude/polyapi-docs-skill/knowledge/…` (with symlinks resolved to real files) and `.claude/skills/polyapi-platform/…`.
+Expect both `.claude/polyapi-skill/knowledge/…` (with symlinks resolved to real files) and `.claude/skills/polyapi-platform/…`.
 
 ## Bumping the version
 
@@ -112,10 +112,10 @@ The first time:
 git init                                          # if not already a repo
 git add .
 git commit -m "Initial PolyAPI docs skill repo"
-gh repo create polyapi-docs-skill --source=. --public --push
+gh repo create polyapi-skill --source=. --public --push
 ```
 
-After that, every commit to `main` is what `npx skills add chrislatimer/polyapi-docs-skill` and `npx github:chrislatimer/polyapi-docs-skill` resolve to — no separate release step needed.
+After that, every commit to `main` is what `npx skills add chrislatimer/polyapi-skill` and `npx github:chrislatimer/polyapi-skill` resolve to — no separate release step needed.
 
 ## What NOT to change without care
 
