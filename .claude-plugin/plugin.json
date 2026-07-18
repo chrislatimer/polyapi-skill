@@ -1,0 +1,23 @@
+{
+  "name": "polyapi-platform",
+  "version": "1.1.0",
+  "description": "PolyAPI platform skill + local docs pack for Claude Code. Covers the full documented surface (API functions, generated SDKs, Canopy, Vari, Tabi, webhooks, jobs, schemas, snippets, auth, Project Glide) plus field-notes pages for AI Functions, Python setup gotchas, server-function runtime, Tabi PATCH-is-REPLACE, and observability/reducer wrapper patterns.",
+  "author": {
+    "name": "Chris Latimer",
+    "email": "chris.latimer@vectorize.io"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_USER/polyapi-docs-skill",
+  "repository": "https://github.com/YOUR_GITHUB_USER/polyapi-docs-skill",
+  "license": "MIT",
+  "keywords": [
+    "polyapi",
+    "documentation",
+    "sdk",
+    "canopy",
+    "ai-functions",
+    "tabi",
+    "webhooks",
+    "python",
+    "typescript"
+  ]
+}

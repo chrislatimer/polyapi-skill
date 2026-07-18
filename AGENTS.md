@@ -21,6 +21,7 @@ For any task involving PolyAPI:
 
 ## Section guide
 
+- `knowledge/pages/ops__*.md` — **field notes; read first for AI functions, Python setup gotchas, Tabi caveats, server-function runtime, wrapper patterns**
 - `knowledge/pages/api_functions__*.md`
 - `knowledge/pages/generated_sdks__*.md`
 - `knowledge/pages/authentication__*.md`
@@ -35,6 +36,13 @@ For any task involving PolyAPI:
 - `knowledge/pages/snippets__*.md`
 - `knowledge/pages/project_glide__*.md`
 - `knowledge/pages/copilot__*.md`
+
+## Load-bearing gotchas
+
+- **AI Functions** (`/functions/ai/*`) are a real primitive not covered on docs.polyapi.io. See `knowledge/pages/ops__ai_functions.md`.
+- **`POLY_API_KEY` env var overrides `.config.env`** — cause of most first-time 401s. See `knowledge/pages/ops__python_setup.md`.
+- **`PATCH /tables/{id}` `columns` is REPLACE, not APPEND.** Always send the full list. See `knowledge/pages/ops__tabi_gotchas.md`.
+- **`aiFunction` specs are silently skipped by `polyapi generate`.** Wrap in a server function or hit REST directly.
 
 ## Good prompt patterns
 

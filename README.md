@@ -1,97 +1,131 @@
 # polyapi-docs-skill
 
-A git-ready, agent-friendly repository that packages the PolyAPI documentation as local Markdown knowledge plus reusable instructions for Claude Code and Codex.
+A drop-in Claude Code skill for PolyAPI. Ships the official docs.polyapi.io export as local Markdown **plus** five field-notes pages covering behavior the official docs don't: AI Functions, Python SDK setup gotchas, server-function runtime internals, Tabi's PATCH-is-REPLACE trap, and the observability + reducer wrapper patterns for AI Functions.
 
-## What is in this repo
+> Replace `YOUR_GITHUB_USER` in the install commands below with the GitHub owner this repo is published under.
 
-- `knowledge/pages/` — one Markdown file per PolyAPI documentation page
-- `knowledge/manifest.csv` — page manifest with source URLs and local paths
-- `knowledge/SECTION_INDEX.md` — section-by-section map for quick navigation
-- `knowledge/polyapi-docs-combined.md` — full combined export
-- `.claude/skills/polyapi-platform.md` — Claude Code skill file
-- `CLAUDE.md` — project instructions automatically loaded by Claude Code
-- `AGENTS.md` — project instructions for Codex and other coding agents
-- `skills/polyapi-platform/SKILL.md` — shareable generic skill document
-- `scripts/scrape_polyapi_docs.py` — scraper used to build the knowledge base
+---
 
-## Purpose
+## Install
 
-This repo turns the PolyAPI docs into a local knowledge pack that coding agents can consult while building integrations, Canopy apps, webhook handlers, generated SDK usage, authentication flows, and other PolyAPI-related work.
+Three install paths depending on how much you want.
 
-## Recommended agent workflow
+### 1. Skill + field notes only (lightest, `npx skills add`)
 
-1. Read `knowledge/SECTION_INDEX.md` to find the right section.
-2. Read only the specific page files needed for the task.
-3. Use `knowledge/polyapi-docs-combined.md` only for broad synthesis or full-text search.
-4. Cite the source URL from the page file header when explaining behavior.
+```bash
+npx skills add YOUR_GITHUB_USER/polyapi-docs-skill --skill polyapi-platform --agent claude-code
+```
 
-## Using with Claude Code
+Installs `.claude/skills/polyapi-platform/{SKILL.md,references/}` — the skill's entry point and the five field-notes pages. About 60 KB total. Best when you already have the docs.polyapi.io tab open and just want the operational knowledge on hand.
 
-Claude Code auto-loads `CLAUDE.md` from the repo root. The repo also includes `.claude/skills/polyapi-platform.md` for task-specific guidance.
+Global install (all your projects, `~/.claude`):
 
-If you want to install this knowledge pack into another Claude Code project, run this inside that target project after you push this repo to GitHub:
+```bash
+npx skills add YOUR_GITHUB_USER/polyapi-docs-skill --skill polyapi-platform --agent claude-code -g
+```
+
+### 2. Skill + full local docs pack (`npx github:...`)
 
 ```bash
 npx github:YOUR_GITHUB_USER/polyapi-docs-skill
 ```
 
-That vendors the PolyAPI docs into:
+Runs the installer script in the current directory. Vendors:
 
-- `.claude/polyapi-docs-skill/knowledge/`
-- `.claude/polyapi-docs-skill/AGENTS.md`
-- `.claude/skills/polyapi-platform.md`
-
-If you need to overwrite an existing install:
-
-```bash
-npx github:YOUR_GITHUB_USER/polyapi-docs-skill --force
+```
+.claude/polyapi-docs-skill/knowledge/           # 70 scraped docs.polyapi.io pages + SECTION_INDEX + combined export
+.claude/polyapi-docs-skill/AGENTS.md            # Codex/Cursor-style agent guidance
+.claude/skills/polyapi-platform/SKILL.md        # skill entry point (auto-discovered by Claude Code)
+.claude/skills/polyapi-platform/references/     # the five field-notes pages
 ```
 
-Typical prompts:
+Best for offline work or when you want Claude to grep across the full docs without hitting the network.
 
-- `Use the PolyAPI docs in this repo to build a webhook handler.`
-- `Read the relevant PolyAPI pages and implement authentication for this SDK client.`
-- `Use the PolyAPI skill and tell me which docs cover Canopy CRUD.`
+Flags:
 
-## Using with Codex
+```bash
+npx github:YOUR_GITHUB_USER/polyapi-docs-skill --target /path/to/project
+npx github:YOUR_GITHUB_USER/polyapi-docs-skill --force            # overwrite existing install
+```
 
-Codex and similar coding agents can use `AGENTS.md` as the repo-level instruction file.
+### 3. Clone the repo (contributor / plugin path)
 
-Typical prompts:
+```bash
+git clone https://github.com/YOUR_GITHUB_USER/polyapi-docs-skill.git
+```
 
-- `Use AGENTS.md and the local PolyAPI docs to scaffold a Canopy app.`
-- `Find the relevant PolyAPI docs in knowledge/pages and implement variable injection.`
+The repo doubles as a Claude Code plugin — it has `.claude-plugin/plugin.json` and `skills/polyapi-platform/SKILL.md` at the expected paths. Open it in Claude Code and the skill auto-registers; or reference it via a plugin marketplace once published.
+
+---
+
+## What's inside
+
+### Field notes (always present with any install)
+
+Under `skills/polyapi-platform/references/` (in the repo) or `.claude/skills/polyapi-platform/references/` (after install):
+
+| File | Covers |
+|---|---|
+| `ops__ai_functions.md` | The undocumented `aiFunction` primitive: endpoints, full spec shape, missing observability, `/functions/ai/*` vs the legacy `/ai-functions/*` |
+| `ops__python_setup.md` | Real setup path including the `POLY_API_KEY` env-var override that causes most first-time 401s |
+| `ops__server_function_runtime.md` | `polyCustom`, execution ids, calling Tabi from a server function, HTTP fallback for endpoints the SDK skips |
+| `ops__tabi_gotchas.md` | `PATCH /tables/{id}` `columns` is REPLACE not APPEND, plus recovery steps and other Tabi caveats |
+| `ops__wrapper_patterns.md` | Observability wrapper (log AI I/O to Tabi) and smart/reducer wrapper (code path first, AI fallback) idioms |
+
+### Full docs pack (install path 2 or 3 only)
+
+Under `knowledge/` (in the repo) or `.claude/polyapi-docs-skill/knowledge/` (after installer):
+
+- `pages/*.md` — one Markdown file per page on docs.polyapi.io, with a `Source:` URL header on each
+- `SECTION_INDEX.md` — section map that Claude reads first to locate the right page
+- `polyapi-docs-combined.md` — everything in one file, for grep-heavy synthesis
+- `manifest.csv` — source URL → local file mapping
+
+---
+
+## Verify the skill loaded
+
+After install path 1 or 2, open Claude Code in the target project and type `/skills` — you should see `polyapi-platform` listed. If not, check that `.claude/skills/polyapi-platform/SKILL.md` exists and starts with YAML frontmatter (`---\nname: polyapi-platform\n...`).
+
+Sample prompts:
+
+- `Use the PolyAPI platform skill to explain how AI Functions are invoked.`
+- `Check the local docs before writing this Tabi table.`
+- `Deploy this server function and wrap it with the observability pattern from the ops notes.`
+
+---
 
 ## Refreshing the docs
 
-Re-run:
+The scraper builds the `knowledge/` pack from docs.polyapi.io:
 
 ```bash
 python3 scripts/scrape_polyapi_docs.py
 ```
 
-Then review changes and commit them.
+Then rebuild the section index:
 
-## Push to GitHub
+```bash
+python3 scripts/build_section_index.py
+```
 
-This repo is safe to initialize and push after review:
+Review the diff and commit. The `ops__*.md` field notes live under `skills/polyapi-platform/references/` (symlinked from `knowledge/pages/`) and are hand-maintained — the scraper leaves them alone.
+
+---
+
+## Publishing this repo
 
 ```bash
 git init
 git add .
 git commit -m "Initial PolyAPI docs skill repo"
+gh repo create polyapi-docs-skill --source=. --public --push
 ```
 
-If you want a GitHub remote:
+Once pushed, the install commands above will work — replace `YOUR_GITHUB_USER` in the README, plugin.json, and package.json with your actual GitHub handle.
 
-```bash
-gh repo create polyapi-docs-skill --source=. --private --push
-```
+---
 
-Change `--private` to `--public` if desired.
+## License
 
-Once pushed, the installer command for other Claude Code projects is:
-
-```bash
-npx github:YOUR_GITHUB_USER/polyapi-docs-skill
-```
+MIT — see [LICENSE](LICENSE).

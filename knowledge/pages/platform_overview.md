@@ -1,5 +1,7 @@
 Source: https://docs.polyapi.io/platform_overview.html
 
+> **Docs gap.** The Functions bullet below omits **AI Functions** (`/functions/ai/*`), a first-class PolyAPI resource type currently in `ALPHA`. See [ops__ai_functions.md](ops__ai_functions.md) for the full primitive, endpoints, and spec shape until the official overview catches up.
+
 # Platform Overview
 
 **The PolyAPI Platform consists of:**

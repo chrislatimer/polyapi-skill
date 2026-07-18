@@ -1,9 +1,37 @@
 {
   "name": "polyapi-docs-skill",
   "version": "1.1.0",
-  "description": "Agent-friendly local PolyAPI documentation skill repo for Claude Code and Codex.",
+  "description": "Vendorable PolyAPI docs + Claude Code skill. Ships the full PolyAPI documentation as local Markdown plus field-notes pages for AI Functions, Python setup, Tabi gotchas, server-function runtime, and reducer wrapper patterns.",
   "license": "MIT",
+  "author": "Chris Latimer <chris.latimer@vectorize.io>",
+  "homepage": "https://github.com/YOUR_GITHUB_USER/polyapi-docs-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_GITHUB_USER/polyapi-docs-skill.git"
+  },
+  "keywords": [
+    "polyapi",
+    "claude-code",
+    "claude",
+    "skill",
+    "documentation",
+    "sdk",
+    "ai-functions",
+    "tabi",
+    "canopy"
+  ],
   "bin": {
     "polyapi-docs-skill": "scripts/install.js"
-  }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "scripts/install.js",
+    "knowledge/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "skills/",
+    ".claude-plugin/"
+  ]
 }

@@ -1,8 +1,16 @@
 # PolyAPI section index
 
-Total pages: 70
+Total pages: 75 (70 scraped from docs.polyapi.io + 5 field-notes pages)
 
-This file maps the scraped PolyAPI docs into sections that are easy for coding agents to navigate.
+This file maps the PolyAPI docs into sections that are easy for coding agents to navigate. Scraped-from-website pages have `Source:` URLs; field-notes pages (`ops__*.md`) capture behavior the official docs don't cover yet — read those first when working with AI Functions, SDK setup, or any feature marked ALPHA.
+
+## ops (field notes — start here for anything ALPHA or gotcha-prone)
+
+- `ops/ai_functions` — [AI Functions primitive: endpoints, spec shape, missing observability](knowledge/pages/ops__ai_functions.md)
+- `ops/python_setup` — [Python SDK real setup: env-var override, config file, common 401s](knowledge/pages/ops__python_setup.md)
+- `ops/server_function_runtime` — [polyCustom, execution ids, calling other functions, calling Tabi from server functions](knowledge/pages/ops__server_function_runtime.md)
+- `ops/tabi_gotchas` — [PATCH `/tables/{id}` columns is REPLACE not APPEND, plus other Tabi caveats](knowledge/pages/ops__tabi_gotchas.md)
+- `ops/wrapper_patterns` — [Observability wrapper + smart (reducer) wrapper for AI functions](knowledge/pages/ops__wrapper_patterns.md)
 
 ## api_functions
 
