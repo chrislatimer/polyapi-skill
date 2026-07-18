@@ -1,0 +1,13 @@
+{
+  "output_dir": "/Users/christopher/polyapi-docs-markdown",
+  "pages_dir": "/Users/christopher/polyapi-docs-markdown/pages",
+  "manifest": "/Users/christopher/polyapi-docs-markdown/manifest.csv",
+  "searchindex_url": "https://docs.polyapi.io/searchindex.js",
+  "docnames_count": 70,
+  "rendered_count": 70,
+  "file_count": 70,
+  "failure_count": 0,
+  "failures": [],
+  "missing_files": [],
+  "extra_files": []
+}
