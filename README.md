@@ -29,6 +29,24 @@ This repo turns the PolyAPI docs into a local knowledge pack that coding agents 
 
 Claude Code auto-loads `CLAUDE.md` from the repo root. The repo also includes `.claude/skills/polyapi-platform.md` for task-specific guidance.
 
+If you want to install this knowledge pack into another Claude Code project, run this inside that target project after you push this repo to GitHub:
+
+```bash
+npx github:YOUR_GITHUB_USER/polyapi-docs-skill
+```
+
+That vendors the PolyAPI docs into:
+
+- `.claude/polyapi-docs-skill/knowledge/`
+- `.claude/polyapi-docs-skill/AGENTS.md`
+- `.claude/skills/polyapi-platform.md`
+
+If you need to overwrite an existing install:
+
+```bash
+npx github:YOUR_GITHUB_USER/polyapi-docs-skill --force
+```
+
 Typical prompts:
 
 - `Use the PolyAPI docs in this repo to build a webhook handler.`
@@ -71,3 +89,9 @@ gh repo create polyapi-docs-skill --source=. --private --push
 ```
 
 Change `--private` to `--public` if desired.
+
+Once pushed, the installer command for other Claude Code projects is:
+
+```bash
+npx github:YOUR_GITHUB_USER/polyapi-docs-skill
+```
