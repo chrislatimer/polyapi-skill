@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [polyapi, documentation, sdk, canopy, webhooks, auth]
-    related_skills: [claude-code, codex]
+    related_skills: []
 ---
 
 # PolyAPI Platform Skill
